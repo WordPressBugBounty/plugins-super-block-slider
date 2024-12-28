@@ -1,10 +1,10 @@
 === Super block slider - Responsive image & content slider ===
 Contributors:       Mikemmx
 Donate link:        https://www.paypal.com/paypalme/wpslider
-Tags:               image slider, slider, parallax, content slider, responsive slider
+Tags:               slider, image slider, content slider, slider block, responsive slider
 Requires at least:  6.3
-Tested up to:       6.5
-Stable tag:         2.7.7
+Tested up to:       6.7.1
+Stable tag:         2.7.9
 Requires PHP:       7.0.0
 License:            GPL-2.0-or-later
 License URI:        https://www.gnu.org/licenses/gpl-2.0.html
@@ -16,7 +16,7 @@ Lightweight, responsive, image & content slider for block and classic editor.
 [youtube https://www.youtube.com/watch?v=6c2Rdi4o5MU]
 <a href="https://superblockslider.com/slider-showcase/" target="_new">Slider examples</a>
 
-Super Block Slider is a lightweight image & content slider plugin for creating dynamic and engaging sliders.
+A lightweight image & content slider plugin. Allows for full control over the content layout and design.
 
 = Lightweight =
 
@@ -28,7 +28,7 @@ Customize each slide's background image and customize the visual presentation of
 
 = Content slider =
 
-Utilize any WordPress block in the content area, giving you full control over the slider layout and design.
+Highly flexible and customizable content, giving you full control over the content layout and design by using any blocks in the content area.
 
 = Supports block & classic editor =
 
@@ -82,6 +82,14 @@ Choose from 20 transition animations to add dynamism and flair to your sliders.
 <a href="https://superblockslider.com/documentations/" target="_new">Documentations</a>
 
 == Changelog ==
+
+= 2.7.9 =
+
+* Add .pot translation files.
+
+= 2.7.8 =
+
+* Fix editor tab overlow.
 
 = 2.7.7 =
 

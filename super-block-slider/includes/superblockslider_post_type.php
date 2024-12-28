@@ -62,7 +62,7 @@ function superblockslider_shortcode($atts) {
 
     // Check if ID is provided
     if (empty($atts['id'])) {
-        return 'Please provide a post ID.';
+        return __('Please provide a post ID.', 'superblockslider');
     }
 
     // Retrieve the post using the ID
@@ -70,7 +70,7 @@ function superblockslider_shortcode($atts) {
 
     // Check if the post exists
     if (!$post) {
-        return 'Post not found.';
+        return __('Post not found.', 'superblockslider');
     }
 
 	// Process shortcodes and Gutenberg blocks in the post content

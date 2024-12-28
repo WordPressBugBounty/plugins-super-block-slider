@@ -1,0 +1,567 @@
+# Copyright (C) 2024 mikemmx
+# This file is distributed under the GPL-2.0-or-later.
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Super block slider 2.7.9\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/super-block-slider\n"
+"POT-Creation-Date: 2024-12-27 22:16-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.5\n"
+"X-Domain: superblockslider\n"
+
+#. Plugin Name of the plugin
+#: super-block-slider.php includes/superblockslider_post_type.php:11
+#: includes/superblockslider_post_type.php:12
+#: includes/superblockslider_post_type.php:28 build/index.js:4508
+#: src/index.js:53
+msgid "Super block slider"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: super-block-slider.php
+msgid "https://superblockslider.com/"
+msgstr ""
+
+#. Description of the plugin
+#: super-block-slider.php
+msgid "Lightweight, responsive, image & content slider for block and classic editor."
+msgstr ""
+
+#. Author of the plugin
+#: super-block-slider.php
+msgid "mikemmx"
+msgstr ""
+
+#. Author URI of the plugin
+#: super-block-slider.php
+msgid "https://wordpress.org/support/users/mikemmx/"
+msgstr ""
+
+#: includes/superblockslider_post_type.php:9
+#: includes/superblockslider_post_type.php:10
+msgctxt "Super block slider"
+msgid "Super block slider"
+msgstr ""
+
+#: includes/superblockslider_post_type.php:13
+msgid "Super block slider Archives"
+msgstr ""
+
+#: includes/superblockslider_post_type.php:14
+msgid "Super block slider Attributes"
+msgstr ""
+
+#: includes/superblockslider_post_type.php:15
+msgid "Parent Super block slider:"
+msgstr ""
+
+#: includes/superblockslider_post_type.php:16
+msgid "All slider"
+msgstr ""
+
+#: includes/superblockslider_post_type.php:17
+msgid "Add New Super block slider"
+msgstr ""
+
+#: includes/superblockslider_post_type.php:18
+msgid "Add New Slider"
+msgstr ""
+
+#: includes/superblockslider_post_type.php:19
+msgid "New Super block slider"
+msgstr ""
+
+#: includes/superblockslider_post_type.php:20
+msgid "Edit Super block slider"
+msgstr ""
+
+#: includes/superblockslider_post_type.php:21
+msgid "Update Super block slider"
+msgstr ""
+
+#: includes/superblockslider_post_type.php:22
+#: includes/superblockslider_post_type.php:23
+msgid "View Super block slider"
+msgstr ""
+
+#: includes/superblockslider_post_type.php:29
+msgid "Super block slider for use with shortcode"
+msgstr ""
+
+#: includes/superblockslider_post_type.php:65
+msgid "Please provide a post ID."
+msgstr ""
+
+#: includes/superblockslider_post_type.php:73
+msgid "Post not found."
+msgstr ""
+
+#: build/index.js:1739 src/Components/slide.js:20
+msgid "Single slide"
+msgstr ""
+
+#: build/index.js:1742 src/Components/slide.js:23
+msgid "Single slide for Super slider block"
+msgstr ""
+
+#: build/index.js:1760 build/index.js:4381 src/Components/slide.js:49
+#: src/edit.js:708
+msgid "Title"
+msgstr ""
+
+#: build/index.js:2507 src/Components/slide.js:655
+msgid "Delete Slide"
+msgstr ""
+
+#: build/index.js:2508 src/Components/slide.js:655
+msgid "Delete"
+msgstr ""
+
+#: build/index.js:2570 build/index.js:4201 src/Components/slide.js:708
+#: src/edit.js:562
+msgid "Slider settings"
+msgstr ""
+
+#: build/index.js:2572 src/Components/slide.js:709
+msgid "Main settings"
+msgstr ""
+
+#: build/index.js:2595 src/Components/slide.js:753
+msgid "Default background image."
+msgstr ""
+
+#: build/index.js:2595 src/Components/slide.js:753
+msgid "Visible at Screen width 1280px and greater/below unless override by \"Desktop\", \"Tablet\", \"Mobile\" settings."
+msgstr ""
+
+#: build/index.js:2596 build/index.js:2605 build/index.js:2614
+#: build/index.js:2623 src/Components/slide.js:758 src/Components/slide.js:775
+#: src/Components/slide.js:793 src/Components/slide.js:811
+msgid "Set focus"
+msgstr ""
+
+#: build/index.js:2604 src/Components/slide.js:771
+msgid "Visible at screen width 1024px to 1279px."
+msgstr ""
+
+#: build/index.js:2613 src/Components/slide.js:788
+msgid "Visible at screen width 768px to 1023px."
+msgstr ""
+
+#: build/index.js:2622 src/Components/slide.js:806
+msgid "Visible at screen width 767px and below."
+msgstr ""
+
+#: build/index.js:2650 src/Components/slide.js:841
+msgid "Remove background"
+msgstr ""
+
+#: build/index.js:2655 src/Components/slide.js:853
+msgid "Set Background Image"
+msgstr ""
+
+#: build/index.js:2657 src/Components/slide.js:860
+msgid "Set a \"Default\" background image first to use this feature."
+msgstr ""
+
+#: build/index.js:2661 build/index.js:2688 build/index.js:2715
+#: build/index.js:2742 src/Components/slide.js:874 src/Components/slide.js:899
+#: src/Components/slide.js:923 src/Components/slide.js:947
+msgid "Background size"
+msgstr ""
+
+#: build/index.js:2662 build/index.js:2689 build/index.js:2716
+#: build/index.js:2743 src/Components/slide.js:875 src/Components/slide.js:900
+#: src/Components/slide.js:924 src/Components/slide.js:948
+msgid "Background can be left to its natural size, stretched, or constrained to fit the available space."
+msgstr ""
+
+#: build/index.js:2665 build/index.js:2692 build/index.js:2719
+#: build/index.js:2746 src/Components/slide.js:878 src/Components/slide.js:903
+#: src/Components/slide.js:927 src/Components/slide.js:951
+msgid "Auto"
+msgstr ""
+
+#: build/index.js:2668 build/index.js:2695 build/index.js:2722
+#: build/index.js:2749 src/Components/slide.js:879 src/Components/slide.js:904
+#: src/Components/slide.js:928 src/Components/slide.js:952
+msgid "Contain (constrained)"
+msgstr ""
+
+#: build/index.js:2671 build/index.js:2698 build/index.js:2725
+#: build/index.js:2752 src/Components/slide.js:880 src/Components/slide.js:905
+#: src/Components/slide.js:929 src/Components/slide.js:953
+msgid "Cover (stretched)"
+msgstr ""
+
+#: build/index.js:2674 build/index.js:2701 build/index.js:2728
+#: build/index.js:2755 src/Components/slide.js:881 src/Components/slide.js:906
+#: src/Components/slide.js:930 src/Components/slide.js:954
+msgid "Fill (stretched + constrained)"
+msgstr ""
+
+#: build/index.js:2681 src/Components/slide.js:887
+msgid "Lazyload background image"
+msgstr ""
+
+#: build/index.js:2682 build/index.js:2709 build/index.js:2736
+#: build/index.js:2763 src/Components/slide.js:888 src/Components/slide.js:912
+#: src/Components/slide.js:936 src/Components/slide.js:960
+msgid "Start loading background image when visible on screen. (Recommend keeping this disabled)"
+msgstr ""
+
+#: build/index.js:2708 build/index.js:2735 build/index.js:2762
+#: src/Components/slide.js:911 src/Components/slide.js:935
+#: src/Components/slide.js:959
+msgid "Enable lazyload"
+msgstr ""
+
+#: build/index.js:2770 src/Components/slide.js:976
+msgid "Content vertical alignment"
+msgstr ""
+
+#: build/index.js:2773 src/Components/slide.js:979
+msgid "Top"
+msgstr ""
+
+#: build/index.js:2776 src/Components/slide.js:980
+msgid "Center"
+msgstr ""
+
+#: build/index.js:2779 src/Components/slide.js:981
+msgid "Bottom"
+msgstr ""
+
+#: build/index.js:2784 src/Components/slide.js:989
+msgid "Content overflow"
+msgstr ""
+
+#: build/index.js:2800 src/Components/slide.js:998
+msgid "How to display content if it dosen't fit the content box."
+msgstr ""
+
+#: build/index.js:2802 src/Components/slide.js:1003
+msgid "Background overlay"
+msgstr ""
+
+#: build/index.js:2805 src/Components/slide.js:1005
+msgid "Solid background color"
+msgstr ""
+
+#: build/index.js:2810 src/Components/slide.js:1014
+msgid "Gradient background color"
+msgstr ""
+
+#: build/index.js:2865 src/Components/slide.js:1091
+msgid "Overlay opacity"
+msgstr ""
+
+#: build/index.js:2871 src/Components/slide.js:1099
+msgid "Slide Link"
+msgstr ""
+
+#: build/index.js:2875 src/Components/slide.js:1101
+msgid "Add URL link to slide."
+msgstr ""
+
+#: build/index.js:2875 build/index.js:2890 src/Components/slide.js:1103
+#: src/Components/slide.js:1129
+msgid "Note: No preview while in editor."
+msgstr ""
+
+#: build/index.js:2876 src/Components/slide.js:1108
+msgid "URL"
+msgstr ""
+
+#: build/index.js:2882 src/Components/slide.js:1118
+msgid "Open in new tab"
+msgstr ""
+
+#: build/index.js:2886 src/Components/slide.js:1125
+msgid "Parallax background"
+msgstr ""
+
+#: build/index.js:2890 src/Components/slide.js:1127
+msgid "Add parallax effect to background image"
+msgstr ""
+
+#: build/index.js:2891 src/Components/slide.js:1134
+msgid "Enable parallax"
+msgstr ""
+
+#: build/index.js:2892 src/Components/slide.js:1135
+msgid "Disabled while \"Adaptive slider height\" is enabled."
+msgstr ""
+
+#: build/index.js:2892 src/Components/slide.js:1135
+msgid "Setting \"Background size\" to \"Cover\" is recommended in parallax mode."
+msgstr ""
+
+#: build/index.js:2897 src/Components/slide.js:1144
+msgid "Speed"
+msgstr ""
+
+#: build/index.js:2898 src/Components/slide.js:1145
+msgid "Note: Background image will scale based on the speed to fit."
+msgstr ""
+
+#: build/index.js:4159 src/edit.js:520
+msgid "Previous slide"
+msgstr ""
+
+#: build/index.js:4176 src/edit.js:530
+msgid "Next slide"
+msgstr ""
+
+#: build/index.js:4193 build/index.js:4198 build/index.js:4200 src/edit.js:546
+#: src/edit.js:556 src/edit.js:557
+msgid "Add new slide"
+msgstr ""
+
+#: build/index.js:4204 src/edit.js:565
+msgid "Initial selected slide"
+msgstr ""
+
+#: build/index.js:4205 src/edit.js:566
+msgid "Set first selected slide."
+msgstr ""
+
+#: build/index.js:4217 src/edit.js:584
+msgid "Transition effect"
+msgstr ""
+
+#: build/index.js:4220 src/edit.js:587
+msgid "Slide"
+msgstr ""
+
+#: build/index.js:4223 src/edit.js:588
+msgid "Fade"
+msgstr ""
+
+#: build/index.js:4228 src/edit.js:592
+msgid "Slide transition animation."
+msgstr ""
+
+#: build/index.js:4230 src/edit.js:596
+msgid "Transition animation speed"
+msgstr ""
+
+#: build/index.js:4231 src/edit.js:597
+msgid "Transition animation speed. In seconds or milliseconds. e.g. 1.5s, 1500ms"
+msgstr ""
+
+#: build/index.js:4233 build/index.js:4352 src/edit.js:600 src/edit.js:671
+msgid "e.g. 1.5s, 1500ms"
+msgstr ""
+
+#: build/index.js:4237 src/edit.js:607
+msgid "Transition animation"
+msgstr ""
+
+#: build/index.js:4238 src/edit.js:608
+msgid "Speed curve of transition animation."
+msgstr ""
+
+#: build/index.js:4242 src/edit.js:612
+msgid "Ease"
+msgstr ""
+
+#: build/index.js:4245 src/edit.js:613
+msgid "Linear"
+msgstr ""
+
+#: build/index.js:4248 src/edit.js:614
+msgid "Ease-in"
+msgstr ""
+
+#: build/index.js:4251 src/edit.js:615
+msgid "Ease-out"
+msgstr ""
+
+#: build/index.js:4254 src/edit.js:616
+msgid "Ease-in-out"
+msgstr ""
+
+#: build/index.js:4261 src/edit.js:619
+msgid "Sine"
+msgstr ""
+
+#: build/index.js:4265 src/edit.js:621
+msgid "In · Sine"
+msgstr ""
+
+#: build/index.js:4268 src/edit.js:622
+msgid "In Out · Sine"
+msgstr ""
+
+#: build/index.js:4271 src/edit.js:623
+msgid "Out · Sine"
+msgstr ""
+
+#: build/index.js:4278 src/edit.js:626
+msgid "Cubic"
+msgstr ""
+
+#: build/index.js:4282 src/edit.js:628
+msgid "In · Cubic"
+msgstr ""
+
+#: build/index.js:4285 src/edit.js:629
+msgid "In Out · Cubic"
+msgstr ""
+
+#: build/index.js:4288 src/edit.js:630
+msgid "Out · Cubic"
+msgstr ""
+
+#: build/index.js:4295 src/edit.js:633
+msgid "Quadratic"
+msgstr ""
+
+#: build/index.js:4299 src/edit.js:635
+msgid "In · Quadratic"
+msgstr ""
+
+#: build/index.js:4302 src/edit.js:636
+msgid "In Out · Quadratic"
+msgstr ""
+
+#: build/index.js:4305 src/edit.js:637
+msgid "Out · Quadratic"
+msgstr ""
+
+#: build/index.js:4312 src/edit.js:640
+msgid "Back"
+msgstr ""
+
+#: build/index.js:4316 src/edit.js:642
+msgid "In Out · Back"
+msgstr ""
+
+#: build/index.js:4319 src/edit.js:643
+msgid "In · Back"
+msgstr ""
+
+#: build/index.js:4322 src/edit.js:644
+msgid "Out · Back"
+msgstr ""
+
+#: build/index.js:4329 src/edit.js:647
+msgid "Other"
+msgstr ""
+
+#: build/index.js:4333 src/edit.js:649
+msgid "Linear In, Fast Out"
+msgstr ""
+
+#: build/index.js:4336 src/edit.js:650
+msgid "Slow In, Fast Out"
+msgstr ""
+
+#: build/index.js:4339 src/edit.js:651
+msgid "Slow In, Linear Out"
+msgstr ""
+
+#: build/index.js:4344 src/edit.js:657
+msgid "Autoplay"
+msgstr ""
+
+#: build/index.js:4345 src/edit.js:658
+msgid "Auto rotate to next slide."
+msgstr ""
+
+#: build/index.js:4349 src/edit.js:667
+msgid "Autoplay timing"
+msgstr ""
+
+#: build/index.js:4350 src/edit.js:668
+msgid "Interval between slides. In seconds or milliseconds. e.g. 1.5s, 1500ms"
+msgstr ""
+
+#: build/index.js:4356 src/edit.js:678
+msgid "Pause autoplay on mouse over"
+msgstr ""
+
+#: build/index.js:4357 src/edit.js:679
+msgid "Pause slider when the mouse cursor is over slider."
+msgstr ""
+
+#: build/index.js:4361 src/edit.js:688
+msgid "loop slides"
+msgstr ""
+
+#: build/index.js:4362 src/edit.js:689
+msgid "Note: No preview in editor."
+msgstr ""
+
+#: build/index.js:4367 src/edit.js:696
+msgid "Show arrows"
+msgstr ""
+
+#: build/index.js:4368 src/edit.js:697
+msgid "Visibility of previous and next arrows."
+msgstr ""
+
+#: build/index.js:4372 src/edit.js:703
+msgid "Slide indicator"
+msgstr ""
+
+#: build/index.js:4375 src/edit.js:706
+msgid "None"
+msgstr ""
+
+#: build/index.js:4378 src/edit.js:707
+msgid "Dots"
+msgstr ""
+
+#: build/index.js:4385 src/edit.js:711
+msgid "Indicator type."
+msgstr ""
+
+#: build/index.js:4387 src/edit.js:715
+msgid "Navigation color"
+msgstr ""
+
+#: build/index.js:4388 src/edit.js:716
+msgid "Color of arrows, indicator."
+msgstr ""
+
+#: build/index.js:4393 src/edit.js:725
+msgid "Width of slider"
+msgstr ""
+
+#: build/index.js:4398 build/index.js:4406 src/edit.js:728 src/edit.js:735
+msgid "Height"
+msgstr ""
+
+#: build/index.js:4401 src/edit.js:732
+msgid "Height of slider"
+msgstr ""
+
+#: build/index.js:4409 src/edit.js:740
+msgid "Adaptive slider height"
+msgstr ""
+
+#: build/index.js:4410 src/edit.js:741
+msgid "Auto resize slider height to the image height."
+msgstr ""
+
+#: build/index.js:4514 src/index.js:59
+msgid "Image and content slider"
+msgstr ""
+
+#: block.json
+msgctxt "block title"
+msgid "Super block slider"
+msgstr ""
+
+#: block.json
+msgctxt "block description"
+msgid "Block slider for Wordpress Gutenberg. Easy to use, fast loading block slider."
+msgstr ""
