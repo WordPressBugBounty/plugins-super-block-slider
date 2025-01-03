@@ -6,27 +6,27 @@ function register_superblockslider_post_type() : void {
     $menu_icon = file_get_contents( plugin_dir_path( __FILE__ ) . '../assets/super-block-slider-icon.svg' );
 
 	$labels = [
-		'name' => _x( 'Super block slider', 'Super block slider', 'superblockslider' ),
-		'singular_name' => _x( 'Super block slider', 'Super block slider', 'superblockslider' ),
-		'menu_name' => __( 'Super block slider', 'superblockslider' ),
-		'name_admin_bar' => __( 'Super block slider', 'superblockslider' ),
-		'archives' => __( 'Super block slider Archives', 'superblockslider' ),
-		'attributes' => __( 'Super block slider Attributes', 'superblockslider' ),
-		'parent_item_colon' => __( 'Parent Super block slider:', 'superblockslider' ),
-		'all_items' => __( 'All slider', 'superblockslider' ),
-		'add_new_item' => __( 'Add New Super block slider', 'superblockslider' ),
-		'add_new' => __( 'Add New Slider', 'superblockslider' ),
-		'new_item' => __( 'New Super block slider', 'superblockslider' ),
-		'edit_item' => __( 'Edit Super block slider', 'superblockslider' ),
-		'update_item' => __( 'Update Super block slider', 'superblockslider' ),
-		'view_item' => __( 'View Super block slider', 'superblockslider' ),
-		'view_items' => __( 'View Super block slider', 'superblockslider' ),
+		'name' => _x( 'Super block slider', 'Super block slider', 'super-block-slider'),
+		'singular_name' => _x( 'Super block slider', 'Super block slider', 'super-block-slider'),
+		'menu_name' => __( 'Super block slider', 'super-block-slider'),
+		'name_admin_bar' => __( 'Super block slider', 'super-block-slider'),
+		'archives' => __( 'Super block slider Archives', 'super-block-slider'),
+		'attributes' => __( 'Super block slider Attributes', 'super-block-slider'),
+		'parent_item_colon' => __( 'Parent Super block slider:', 'super-block-slider'),
+		'all_items' => __( 'All slider', 'super-block-slider'),
+		'add_new_item' => __( 'Add New Super block slider', 'super-block-slider'),
+		'add_new' => __( 'Add New Slider', 'super-block-slider'),
+		'new_item' => __( 'New Super block slider', 'super-block-slider'),
+		'edit_item' => __( 'Edit Super block slider', 'super-block-slider'),
+		'update_item' => __( 'Update Super block slider', 'super-block-slider'),
+		'view_item' => __( 'View Super block slider', 'super-block-slider'),
+		'view_items' => __( 'View Super block slider', 'super-block-slider'),
 	];
 	$labels = apply_filters( 'superblockslider', $labels );
 
 	$args = [
-		'label' => __( 'Super block slider', 'superblockslider' ),
-		'description' => __( 'Super block slider for use with shortcode', 'superblockslider' ),
+		'label' => __( 'Super block slider', 'super-block-slider'),
+		'description' => __( 'Super block slider for use with shortcode', 'super-block-slider'),
 		'labels' => $labels,
 		'supports' => [
 			'title',
@@ -62,7 +62,7 @@ function superblockslider_shortcode($atts) {
 
     // Check if ID is provided
     if (empty($atts['id'])) {
-        return __('Please provide a post ID.', 'superblockslider');
+        return __('Please provide a post ID.', 'super-block-slider');
     }
 
     // Retrieve the post using the ID
@@ -70,10 +70,15 @@ function superblockslider_shortcode($atts) {
 
     // Check if the post exists
     if (!$post) {
-        return __('Post not found.', 'superblockslider');
+        return __('Post not found.', 'super-block-slider');
     }
 
-	// Process shortcodes and Gutenberg blocks in the post content
+	// Check if the user can view the post
+    if (!current_user_can('read_post', $post->ID)) {
+        return __('You do not have permission to view this post.', 'super-block-slider');
+    }
+
+    // Process shortcodes and Gutenberg blocks in the post content
     $content = apply_filters('the_content', $post->post_content);
     return do_shortcode($content);
 }
@@ -125,7 +130,7 @@ function add_messsage_to_superblockslider_edit_page() {
 						var editorElement = document.querySelector('.components-editor-notices__pinned');
 						if (editorElement) {
 							// Insert HTML content in admin notice section.
-							editorElement.insertAdjacentHTML('afterbegin', '<div class="components-notice is-warning"><div class="components-notice__content"><p>This section should only be used if a shortcode is needed for other editors. Super Block Slider can be inserted directly in the block editor.</p><p>Shortcode: <strong>[superblockslider id="' + <?php echo $post->ID; ?> + '"]</strong></p><div class="components-notice__actions"></div></div></div>');
+							editorElement.insertAdjacentHTML('afterbegin', '<div class="components-notice is-warning"><div class="components-notice__content"><p>This section should only be used if a shortcode is needed for other editors. Super Block Slider can be inserted directly in the block editor.</p><p>Shortcode: <strong>[superblockslider id="' + <?php echo esc_html($post->ID); ?> + '"]</strong></p><div class="components-notice__actions"></div></div></div>');
 						}
 					}, 100);
 				});
@@ -145,8 +150,8 @@ function classic_editor_error_notice() {
 
 	// check if classic editor and post type is superblockslider screen and in edit post mode
 	if (!is_block_editor_active() && in_array($current_screen->post_type, $post_types) && $current_screen->base == 'post') {
-	$message = '<p>The block editor is required to create the slider and generate the shortcode to be used with classic or other editors.</p><p>Install <a href="https://wordpress.org/plugins/gutenberg/" target="_new">WordPress\'s block editor</a>, go to Settings > writing and <strong>Allow users to switch editors</strong> click "Yes". a "Switch to block editor" will appear on this page.</p>';
-	echo '<div class="notice notice-error">' . $message . '</div>';
+	$message = '<div class="notice notice-error"><p>The block editor is required to create the slider and generate the shortcode to be used with classic or other editors.</p><p>Install <a href="https://wordpress.org/plugins/gutenberg/" target="_new">WordPress\'s block editor</a>, go to Settings > writing and <strong>Allow users to switch editors</strong> click "Yes". a "Switch to block editor" will appear on this page.</p></div>';
+	echo esc_html($message);
 	}
 }
 add_action('admin_notices', 'classic_editor_error_notice');

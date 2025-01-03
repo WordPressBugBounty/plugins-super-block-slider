@@ -2,13 +2,13 @@
 /**
  * Plugin Name:     Super Block Slider
  * Description:     Lightweight, responsive, image & content slider for block and classic editor.
- * Version:         2.7.9
+ * Version:         2.8.2
  * Author:          mikemmx
  * Plugin URI:		https://superblockslider.com/
  * Author URI:  	https://wordpress.org/support/users/mikemmx/
  * License:         GPL-2.0-or-later
  * License URI:     https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:     superblockslider
+ * Text Domain:     super-block-slider
  * Domain Path:		/languages
  */
 
@@ -40,7 +40,7 @@ function superblockslider_register_block() {
     // Set translations for the block editor
     wp_set_script_translations(
         'superblockslider-editor',
-        'superblockslider',
+        'super-block-slider',
         plugin_dir_path(__FILE__) . 'languages'
     );
 

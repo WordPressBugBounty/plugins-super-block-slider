@@ -4,7 +4,7 @@ Donate link:        https://www.paypal.com/paypalme/wpslider
 Tags:               slider, image slider, content slider, slider block, responsive slider
 Requires at least:  6.3
 Tested up to:       6.7.1
-Stable tag:         2.7.9
+Stable tag:         2.8.2
 Requires PHP:       7.0.0
 License:            GPL-2.0-or-later
 License URI:        https://www.gnu.org/licenses/gpl-2.0.html
@@ -82,6 +82,18 @@ Choose from 20 transition animations to add dynamism and flair to your sliders.
 <a href="https://superblockslider.com/documentations/" target="_new">Documentations</a>
 
 == Changelog ==
+
+= 2.8.2 =
+
+* fix error: ERROR: WordPress.WP.I18n.TextDomainMismatch, WordPress.Security.EscapeOutput.OutputNotEscaped.
+
+= 2.8.1 =
+
+* fix error: ERROR: WordPress.WP.I18n.TextDomainMismatch.
+
+= 2.8 =
+
+* Security fix: Fix vulnerable to Broken Access Control.
 
 = 2.7.9 =
 
