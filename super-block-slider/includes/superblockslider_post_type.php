@@ -66,20 +66,20 @@ function superblockslider_shortcode($atts) {
     }
 
     // Retrieve the post using the ID
-    $post = get_post($atts['id']);
+    $superblockslider_post = get_post($atts['id']);
 
     // Check if the post exists
-    if (!$post) {
+    if (!$superblockslider_post) {
         return __('Post not found.', 'super-block-slider');
     }
 
-	// Check if the user can view the post
-    if (!current_user_can('read_post', $post->ID)) {
+	// Check if the post is publish and not password protected
+    if ($superblockslider_post->post_status !== 'publish' || !empty( $superblockslider_post->post_password )) {
         return __('You do not have permission to view this post.', 'super-block-slider');
     }
 
     // Process shortcodes and Gutenberg blocks in the post content
-    $content = apply_filters('the_content', $post->post_content);
+    $content = apply_filters('the_content', $superblockslider_post->post_content);
     return do_shortcode($content);
 }
 
