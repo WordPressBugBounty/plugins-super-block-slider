@@ -4,7 +4,7 @@ Donate link:        https://www.paypal.com/paypalme/wpslider
 Tags:               slider, image slider, content slider, slider block, responsive slider
 Requires at least:  6.3
 Tested up to:       6.7.1
-Stable tag:         2.8.2.1
+Stable tag:         2.8.2.2
 Requires PHP:       7.0.0
 License:            GPL-2.0-or-later
 License URI:        https://www.gnu.org/licenses/gpl-2.0.html
@@ -82,6 +82,10 @@ Choose from 20 transition animations to add dynamism and flair to your sliders.
 <a href="https://superblockslider.com/documentations/" target="_new">Documentations</a>
 
 == Changelog ==
+
+= 2.8.2.2 =
+
+* Fix bug: Main slider > Advanced > Additional CSS class(es) was not being added in the HTML output.
 
 = 2.8.2.1 =
 
