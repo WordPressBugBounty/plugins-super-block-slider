@@ -1,15 +1,15 @@
-=== Super block slider - Responsive image & content slider ===
+=== Super block slider - Image & content slider ===
 Contributors:       Mikemmx
 Donate link:        https://www.paypal.com/paypalme/wpslider
-Tags:               slider, image slider, content slider, slider block, responsive slider
+Tags:               slider, image slider, content slider, slider block, block
 Requires at least:  6.3
-Tested up to:       6.7.1
-Stable tag:         2.8.2.2
+Tested up to:       6.8
+Stable tag:         2.8.2.4
 Requires PHP:       7.0.0
 License:            GPL-2.0-or-later
 License URI:        https://www.gnu.org/licenses/gpl-2.0.html
 
-Lightweight, responsive, image & content slider for block and classic editor.
+Lightweight image & content slider for block and classic editor.
 
 == Description ==
 
@@ -82,6 +82,11 @@ Choose from 20 transition animations to add dynamism and flair to your sliders.
 <a href="https://superblockslider.com/documentations/" target="_new">Documentations</a>
 
 == Changelog ==
+
+= 2.8.2.4 =
+
+* Test on WordPress 6.8-RC3
+* Backend editor quality of life changes.
 
 = 2.8.2.2 =
 
