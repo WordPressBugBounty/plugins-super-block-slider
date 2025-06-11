@@ -4,7 +4,7 @@ Donate link:        https://www.paypal.com/paypalme/wpslider
 Tags:               slider, image slider, content slider, slider block, block
 Requires at least:  6.3
 Tested up to:       6.8
-Stable tag:         2.8.2.4
+Stable tag:         2.8.3
 Requires PHP:       7.0.0
 License:            GPL-2.0-or-later
 License URI:        https://www.gnu.org/licenses/gpl-2.0.html
@@ -82,6 +82,14 @@ Choose from 20 transition animations to add dynamism and flair to your sliders.
 <a href="https://superblockslider.com/documentations/" target="_new">Documentations</a>
 
 == Changelog ==
+
+= 2.8.3 =
+
+* Display shortcode in Super block slider admin area.
+
+= 2.8.2.5 =
+
+* Update navigation arrow SVG, change navigation arrow CSS implimentaion.
 
 = 2.8.2.4 =
 

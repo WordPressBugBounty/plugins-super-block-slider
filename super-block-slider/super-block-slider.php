@@ -1,8 +1,8 @@
 <?php
 /**
  * Plugin Name:     Super Block Slider
- * Description:     Lightweight, responsive, image & content slider for block and classic editor.
- * Version:         2.8.2.4
+ * Description:     Lightweight image & content slider for block and classic editor.
+ * Version:         2.8.3
  * Author:          mikemmx
  * Plugin URI:		https://superblockslider.com/
  * Author URI:  	https://wordpress.org/support/users/mikemmx/
@@ -89,3 +89,19 @@ function superblockslider_load_textdomain() {
     load_plugin_textdomain('superblockslider', false, dirname(plugin_basename(__FILE__)) . '/languages');
 }
 add_action('plugins_loaded', 'superblockslider_load_textdomain');
+
+
+// Add a new column for Post ID
+add_filter('manage_superblockslider_posts_columns', 'add_superblockslider_shortcode_column');
+function add_superblockslider_shortcode_column($columns) {
+    $columns['post_id'] = 'Shortcode';
+    return $columns;
+}
+
+// Fill the column with the post ID
+add_action('manage_superblockslider_posts_custom_column', 'show_superblockslider_shortcode', 10, 2);
+function show_superblockslider_shortcode($column, $post_id) {
+    if ($column === 'post_id') {
+        echo '[superblockslider id="' . $post_id . '"]';
+    }
+}
