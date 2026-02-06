@@ -3,8 +3,8 @@ Contributors:       Mikemmx
 Donate link:        https://www.paypal.com/paypalme/wpslider
 Tags:               slider, image slider, content slider, slider block, block
 Requires at least:  6.3
-Tested up to:       6.8
-Stable tag:         2.8.3
+Tested up to:       6.9
+Stable tag:         2.8.3.3
 Requires PHP:       7.0.0
 License:            GPL-2.0-or-later
 License URI:        https://www.gnu.org/licenses/gpl-2.0.html
@@ -82,6 +82,16 @@ Choose from 20 transition animations to add dynamism and flair to your sliders.
 <a href="https://superblockslider.com/documentations/" target="_new">Documentations</a>
 
 == Changelog ==
+
+= 2.8.3.3 =
+
+* Fix WP plugin check errors, minor fixes.
+
+= 2.8.3.2 =
+
+* Add ability to reorder slides.
+* Remove admin shortcode message.
+* Fix WordPress 6.9 compatibility.
 
 = 2.8.3 =
 
@@ -293,3 +303,4 @@ While in Page/Post edit mode simply add/search for **super block slider**.
 4. Live results screenshot 4
 5. Editor screenshot 5
 6. Editor screenshot 6
+7. Editor screenshot 7

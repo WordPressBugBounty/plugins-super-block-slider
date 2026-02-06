@@ -46,7 +46,7 @@
             el_superblockslider__track.addEventListener('transitionend', transitionEnd);
             var offsetPercent = 100 / el_superblockslider__slides.length;
             var translateXOffset = currentSlideIndex * offsetPercent;
-            var translateX = "translateX(-" + translateXOffset + "%)";
+            var translateX = "translateX(-".concat(translateXOffset, "%)");
             var parallaxSlides = slider.querySelectorAll('.superblockslider__slide[data-parallax="true"]');
             if (parallaxSlides) {
                 parallaxInit();
@@ -60,7 +60,7 @@
                                 var parallaxSpeed = parallaxAttribute ? parseInt(parallaxAttribute) / 100 : 0;
                                 var parallaxOffset = (parallaxSpeed) * ((window.innerHeight - sliderPositionY));
                                 var totalParallaxOffset = (parallaxSpeed) * ((window.innerHeight));
-                                el_slide_bg.style.transform = "translateY(" + (parallaxOffset - totalParallaxOffset) + "px)";
+                                el_slide_bg.style.transform = "translateY(".concat(parallaxOffset - totalParallaxOffset, "px)");
                             }
                             else {
                                 el_slide_bg.style.transform = "translateY(0px)";
@@ -81,13 +81,13 @@
                     var el_slide_bg = slide.querySelectorAll('.superblockslider__slide__bg')[0];
                     var el_slide_bg_img = el_slide_bg.querySelectorAll('img')[0];
                     var imageHeight = (parallaxSpeed * windowHeight / 2) + sliderHeight;
-                    el_slide_bg_img.style.height = imageHeight + "px";
+                    el_slide_bg_img.style.height = "".concat(imageHeight, "px");
                     var totalParallaxOffset = (parallaxSpeed) * ((windowHeight));
                     var parallaxOffset = 0;
                     if (sliderPositionY <= windowHeight && sliderPositionY >= Math.abs(windowHeight) * -1) {
                         parallaxOffset = (parallaxSpeed) * ((windowHeight - sliderPositionY));
                     }
-                    el_slide_bg.style.transform = "translateY(" + (parallaxOffset - totalParallaxOffset) + "px)";
+                    el_slide_bg.style.transform = "translateY(".concat(parallaxOffset - totalParallaxOffset, "px)");
                 });
             }
             var autoplayTime;
@@ -158,19 +158,19 @@
                                 el_superblockslider__track.prepend(lastSide);
                                 currentSlideIndex = 1;
                                 var trackOffset = currentSlideIndex * offsetPercent;
-                                translateX = "translateX(-" + trackOffset + "%)";
+                                translateX = "translateX(-".concat(trackOffset, "%)");
                                 el_superblockslider__track.style.transform = translateX;
                             }
                             else if (currentSlideIndex === el_superblockslider__slides.length - 1) {
                                 el_superblockslider__track.style.transition = 'none';
                                 currentSlideIndex = el_superblockslider__slides.length - 2;
                                 var trackOffset = currentSlideIndex * offsetPercent;
-                                translateX = "translateX(-" + trackOffset + "%)";
+                                translateX = "translateX(-".concat(trackOffset, "%)");
                                 el_superblockslider__track.style.transform = translateX;
                                 var firstSlide = el_superblockslider__slides[0];
                                 el_superblockslider__track.append(firstSlide);
                             }
-                            var slideMatch = slider.querySelectorAll("[data-slide-index=\"" + slideId + "\"]");
+                            var slideMatch = slider.querySelectorAll("[data-slide-index=\"".concat(slideId, "\"]"));
                             if (slideMatch[0] && slideMatch[0].parentNode) {
                                 var slideMatch_parent_children = slideMatch[0].parentNode.children;
                                 var closeSlide = Array.from(slideMatch_parent_children).indexOf(slideMatch[0]);
@@ -185,9 +185,9 @@
             }
             function animate(slideId, slideIndex) {
                 if (settings.transitionEffect == 'slide') {
-                    el_superblockslider__track.style.transition = "all " + settings.transitionDuration + " " + settings.animation;
+                    el_superblockslider__track.style.transition = "all ".concat(settings.transitionDuration, " ").concat(settings.animation);
                     var trackOffset = slideIndex * offsetPercent;
-                    translateX = "translateX(-" + trackOffset + "%)";
+                    translateX = "translateX(-".concat(trackOffset, "%)");
                     el_superblockslider__track.style.transform = translateX;
                     currentSlideIndex = slideIndex;
                     currentSlideId = slideId;
@@ -203,17 +203,17 @@
                 if (autopayToggle !== "stop")
                     autopayToggle = "pause";
                 if (settings.transitionEffect == 'slide') {
-                    el_superblockslider__track.style.transition = "all " + settings.transitionDuration + " " + settings.animation;
+                    el_superblockslider__track.style.transition = "all ".concat(settings.transitionDuration, " ").concat(settings.animation);
                 }
                 if (settings.variableHeight) {
                     updateSliderHeight();
                 }
-                slider.querySelector("[data-slide-index=\"" + currentSlideId + "\"]").classList.add('superblockslider__slide--animating-in');
-                slider.querySelector("[data-slide-index=\"" + previousSlideId + "\"]").classList.add('superblockslider__slide--animating-out');
+                slider.querySelector("[data-slide-index=\"".concat(currentSlideId, "\"]")).classList.add('superblockslider__slide--animating-in');
+                slider.querySelector("[data-slide-index=\"".concat(previousSlideId, "\"]")).classList.add('superblockslider__slide--animating-out');
             }
             function transitionEnd() {
                 slider.querySelector('.superblockslider__slide--active').classList.remove('superblockslider__slide--active');
-                slider.querySelector("[data-slide-index=\"" + currentSlideId + "\"]").classList.add('superblockslider__slide--active');
+                slider.querySelector("[data-slide-index=\"".concat(currentSlideId, "\"]")).classList.add('superblockslider__slide--active');
                 if (settings.slideNavigation != 'none') {
                     slider.querySelector('.superblockslider__button--active').classList.remove('superblockslider__button--active');
                     el_superblockslider__buttons[currentSlideId].classList.add('superblockslider__button--active');
@@ -249,18 +249,18 @@
                 animateTrackToSlideId(nextSlideId, toggleAutoplay);
             }
             function removeAnimatingClasses() {
-                slider.querySelector("[data-slide-index=\"" + currentSlideId + "\"]").classList.remove('superblockslider__slide--animating-in');
-                slider.querySelector("[data-slide-index=\"" + previousSlideId + "\"]").classList.remove('superblockslider__slide--animating-out');
+                slider.querySelector("[data-slide-index=\"".concat(currentSlideId, "\"]")).classList.remove('superblockslider__slide--animating-in');
+                slider.querySelector("[data-slide-index=\"".concat(previousSlideId, "\"]")).classList.remove('superblockslider__slide--animating-out');
             }
             if (settings.variableHeight) {
-                slider.style.transition = "height ease " + settings.transitionDuration;
+                slider.style.transition = "height ease ".concat(settings.transitionDuration);
                 updateSliderHeight();
                 window.addEventListener('resize', updateSliderHeight);
             }
             function updateSliderHeight() {
                 var sliderWidth = slider.offsetWidth;
                 var currentSceenSize = getScreenSize();
-                var currentImage = slider.querySelector("[data-slide-index=\"" + currentSlideId + "\"] img.visible--" + currentSceenSize);
+                var currentImage = slider.querySelector("[data-slide-index=\"".concat(currentSlideId, "\"] img.visible--").concat(currentSceenSize));
                 if (currentImage) {
                     var imageOriginalWidth = Number(currentImage.getAttribute('width'));
                     var imageOriginalHeight = Number(currentImage.getAttribute('height'));

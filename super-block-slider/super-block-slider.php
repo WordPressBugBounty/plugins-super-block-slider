@@ -2,74 +2,83 @@
 /**
  * Plugin Name:     Super Block Slider
  * Description:     Lightweight image & content slider for block and classic editor.
- * Version:         2.8.3
+ * Version:         2.8.3.3
  * Author:          mikemmx
- * Plugin URI:		https://superblockslider.com/
- * Author URI:  	https://wordpress.org/support/users/mikemmx/
+ * Plugin URI:      https://superblockslider.com/
+ * Author URI:      https://wordpress.org/support/users/mikemmx/
  * License:         GPL-2.0-or-later
  * License URI:     https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:     super-block-slider
- * Domain Path:		/languages
+ * Domain Path:     /languages
  */
 
-$dir = __DIR__;
+// Exit if accessed directly
+if (!defined('ABSPATH')) {
+    exit;
+}
+
+// Define plugin constants
+define('SUPERBLOCKSLIDER_VERSION', '2.8.3.3');
+define('SUPERBLOCKSLIDER_DIR', __DIR__);
+define('SUPERBLOCKSLIDER_URL', plugin_dir_url(__FILE__));
 
 /**
  * Load superblockslider post type
  */
-require_once "$dir/includes/superblockslider_post_type.php";
+$superblockslider_post_type_file = SUPERBLOCKSLIDER_DIR . '/includes/superblockslider_post_type.php';
+if (file_exists($superblockslider_post_type_file)) {
+    require_once $superblockslider_post_type_file;
+}
 
 /**
  * Register Super Block Slider
  */
 function superblockslider_register_block() {
-    $dir = __DIR__;
-
-    // Enqueue editor scripts
-    $script_asset_path = "$dir/build/index.asset.php";
+    $script_asset_path = SUPERBLOCKSLIDER_DIR . '/build/index.asset.php';
+    
+    if (!file_exists($script_asset_path)) {
+        return;
+    }
+    
     $script_asset = require $script_asset_path;
 
-    $index_js = 'build/index.js';
+    // Enqueue editor scripts
     wp_register_script(
         'superblockslider-editor',
-        plugins_url($index_js, __FILE__),
+        SUPERBLOCKSLIDER_URL . 'build/index.js',
         $script_asset['dependencies'],
-        $script_asset['version']
+        SUPERBLOCKSLIDER_VERSION
     );
 
-    // Set translations for the block editor
+    // Set translations
     wp_set_script_translations(
         'superblockslider-editor',
         'super-block-slider',
-        plugin_dir_path(__FILE__) . 'languages'
+        SUPERBLOCKSLIDER_DIR . '/languages'
     );
 
     // Enqueue frontend scripts
-    $slider_js = 'build/superblockslider.js';
     wp_register_script(
         'superblockslider',
-        plugins_url($slider_js, __FILE__),
+        SUPERBLOCKSLIDER_URL . 'build/superblockslider.js',
         array(),
-        $script_asset['version'],
+        SUPERBLOCKSLIDER_VERSION,
         true
     );
 
-    // Enqueue editor styles
-    $editor_css = 'build/index.css';
+    // Enqueue styles
     wp_register_style(
         'superblockslider-editor',
-        plugins_url($editor_css, __FILE__),
+        SUPERBLOCKSLIDER_URL . 'build/index.css',
         array(),
-        filemtime("$dir/$editor_css")
+        SUPERBLOCKSLIDER_VERSION
     );
 
-    // Enqueue frontend styles
-    $style_css = 'build/style-index.css';
     wp_register_style(
         'superblockslider',
-        plugins_url($style_css, __FILE__),
+        SUPERBLOCKSLIDER_URL . 'build/style-index.css',
         array(),
-        filemtime("$dir/$style_css")
+        SUPERBLOCKSLIDER_VERSION
     );
 
     // Register the block
@@ -83,25 +92,23 @@ function superblockslider_register_block() {
 add_action('init', 'superblockslider_register_block');
 
 /**
- * Load Super Block Slider text domain
+ * Add shortcode column
  */
-function superblockslider_load_textdomain() {
-    load_plugin_textdomain('superblockslider', false, dirname(plugin_basename(__FILE__)) . '/languages');
-}
-add_action('plugins_loaded', 'superblockslider_load_textdomain');
-
-
-// Add a new column for Post ID
-add_filter('manage_superblockslider_posts_columns', 'add_superblockslider_shortcode_column');
-function add_superblockslider_shortcode_column($columns) {
-    $columns['post_id'] = 'Shortcode';
+add_filter('manage_superblockslider_posts_columns', 'superblockslider_add_shortcode_column');
+function superblockslider_add_shortcode_column($columns) {
+    /* translators: Column header for shortcode display in admin list */
+    $columns['post_id'] = __('Shortcode', 'super-block-slider');
     return $columns;
 }
 
-// Fill the column with the post ID
-add_action('manage_superblockslider_posts_custom_column', 'show_superblockslider_shortcode', 10, 2);
-function show_superblockslider_shortcode($column, $post_id) {
-    if ($column === 'post_id') {
-        echo '[superblockslider id="' . $post_id . '"]';
+/**
+ * Display shortcode in column
+ */
+add_action('manage_superblockslider_posts_custom_column', 'superblockslider_show_shortcode', 10, 2);
+function superblockslider_show_shortcode($column, $post_id) {
+    if ($column === 'post_id' && current_user_can('edit_posts')) {
+        /* translators: %d: slider post ID */
+        $shortcode = sprintf('[superblockslider id="%d"]', absint($post_id));
+        echo esc_html($shortcode);
     }
 }
