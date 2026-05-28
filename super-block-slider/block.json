@@ -1,0 +1,98 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "superblockslider/slider",
+	"title": "Super block slider",
+	"category": "media",
+	"icon": "slides",
+	"description": "Image and content slider",
+	"textdomain": "super-block-slider",
+	"supports": {
+		"html": false,
+		"align": true,
+		"className": true
+	},
+	"attributes": {
+		"slides": {
+			"type": "array",
+			"default": []
+		},
+		"initialActiveSlideValue": {
+			"type": "integer",
+			"default": 0
+		},
+		"transitionSpeedValue": {
+			"type": "string",
+			"default": ".6s"
+		},
+		"transitionAnimationValue": {
+			"type": "string",
+			"default": "cubic-bezier(0.46, 0.03, 0.52, 0.96)"
+		},
+		"autoplayValue": {
+			"type": "boolean",
+			"default": true
+		},
+		"autoplayIntervalValue": {
+			"type": "string",
+			"default": "1.5s"
+		},
+		"loopSlideValue": {
+			"type": "boolean",
+			"default": true
+		},
+		"slideNavigationValue": {
+			"type": "string",
+			"default": "dots"
+		},
+		"hoverPauseValue": {
+			"type": "boolean",
+			"default": true
+		},
+		"arrowNavigationValue": {
+			"type": "boolean",
+			"default": true
+		},
+		"navigationColorValue": {
+			"type": "string",
+			"default": ""
+		},
+		"sliderHeightValue": {
+			"type": "string",
+			"default": "100vh"
+		},
+		"sliderWidthValue": {
+			"type": "string",
+			"default": "100%"
+		},
+		"transitionEffectValue": {
+			"type": "string",
+			"default": "slide"
+		},
+		"variableHeightValue": {
+			"type": "boolean",
+			"default": false
+		},
+		"sliderWidthEditorValue": {
+			"type": "string",
+			"default": "100%"
+		},
+		"editorCurrentImageValue": {
+			"type": "object",
+			"default": {}
+		}
+	},
+	"providesContext": {
+		"superblockslider/slider/initialActiveSlideValue": "initialActiveSlideValue",
+		"superblockslider/slider/transitionEffectValue": "transitionEffectValue",
+		"superblockslider/slider/transitionSpeedValue": "transitionSpeedValue",
+		"superblockslider/slider/transitionAnimationValue": "transitionAnimationValue",
+		"superblockslider/slider/sliderWidthValue": "sliderWidthValue",
+		"superblockslider/slider/variableHeightValue": "variableHeightValue",
+		"superblockslider/slider/sliderWidthEditorValue": "sliderWidthEditorValue"
+	},
+	"editorScript": "superblockslider-editor",
+	"editorStyle": "superblockslider-editor",
+	"style": "superblockslider",
+	"script": "superblockslider"
+}

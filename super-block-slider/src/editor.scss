@@ -1,15 +1,19 @@
 .superblockslider-editor-sidebar .components-base-control {
 	width: 100%;
 }
+
 .superblockslider-responsive-tabPanel .components-tab-panel__tabs-item {
 	padding: 3px 7px;
 }
+
 .wp-block-superblockslider-slider {
 	margin: 0 auto;
 }
+
 .editor-styles-wrapper .wp-block-superblockslider-slider .wp-block {
-    max-width: unset;
+	max-width: unset;
 }
+
 .superblockslider__slide {
 	min-width: 100px;
 	min-height: 100px;
@@ -21,18 +25,24 @@
 		right: 0;
 		border: 1px solid;
 		margin: 5px;
+		padding: 5px;
 		background-color: rgba(255, 255, 255, .25);
 		display: none;
 	}
-	&.is-selected, &.is-hovered, &:hover {
+
+	&.is-selected,
+	&.is-hovered,
+	&:hover {
 		.superblockslider__button--remove {
 			display: flex;
 		}
 	}
 }
+
 .superblockslider__window {
 	width: 0;
 	min-width: 100%;
+
 	.superblockslider__slide_inner {
 		top: 2%;
 	}
@@ -42,10 +52,12 @@
 .superblockslider__buttons {
 	align-items: center;
 }
+
 .superblockslider__button {
 	display: flex;
-    justify-content: center;
+	justify-content: center;
 	text-align: center;
+
 	button {
 		line-height: 0;
 		background-color: transparent;
@@ -56,6 +68,7 @@
 			outline-style: none;
 		}
 	}
+
 	.rich-text {
 		min-width: 20px;
 		opacity: .5;
@@ -70,13 +83,13 @@
 
 .editor-styles-wrapper .superblockslider__track {
 
-	> .block-editor-inner-blocks {
+	>.block-editor-inner-blocks {
 		width: 100%;
 
-		> .block-editor-block-list__layout {
+		>.block-editor-block-list__layout {
 			display: flex;
 			width: 100%;
-    		height: 100%;
+			height: 100%;
 		}
 	}
 
@@ -84,13 +97,14 @@
 		overflow: auto;
 	}
 }
+
 .editor-styles-wrapper div[data-type='superblockslider/slide'] {
 	position: relative;
 	display: flex;
 	margin: 0;
 	max-width: unset;
 	width: 100%;
-	
+
 	.block-editor-inner-blocks {
 		width: 100%;
 	}
@@ -100,6 +114,7 @@ button.components-button.has-icon.has-text.button-full-width {
 	width: 100%;
 	justify-content: center;
 }
+
 /* fade slider */
 .editor-styles-wrapper div[data-transition-effect='fade'] div[data-type='superblockslider/slide'] {
 	position: absolute;
@@ -121,19 +136,21 @@ button.components-button.has-icon.has-text.button-full-width {
 	}
 }
 
-.superblockslider__slide__bg > img {
+.superblockslider__slide__bg>img {
 	min-height: 100%;
 }
 
 .superblockslider__slide__image {
 	display: none;
-} 
+}
+
 .extraLarge .visible--xl,
 .desktop .visible--lg,
 .tablet .visible--md,
 .mobile .visible--sm {
 	display: block;
 }
+
 .superblockslider-responsive-tabPanel .components-tab-panel__tabs {
 	flex-wrap: wrap;
 }

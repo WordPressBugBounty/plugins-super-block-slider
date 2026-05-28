@@ -3,8 +3,8 @@ Contributors:       Mikemmx
 Donate link:        https://www.paypal.com/paypalme/wpslider
 Tags:               slider, image slider, content slider, slider block, block
 Requires at least:  6.3
-Tested up to:       6.9
-Stable tag:         2.8.3.3
+Tested up to:       7.0
+Stable tag:         2.8.3.4
 Requires PHP:       7.0.0
 License:            GPL-2.0-or-later
 License URI:        https://www.gnu.org/licenses/gpl-2.0.html
@@ -22,13 +22,13 @@ A lightweight image & content slider plugin. Allows for full control over the co
 
 Standalone 5KB JavaScript file, optimize for loading speed and performance.
 
-= Image slider =
-
-Customize each slide's background image and customize the visual presentation of your sliders.
-
 = Content slider =
 
 Highly flexible and customizable content, giving you full control over the content layout and design by using any blocks in the content area.
+
+= Image slider =
+
+Customize each slide’s background image and visual presentation of your sliders.
 
 = Supports block & classic editor =
 
@@ -40,7 +40,7 @@ Enhance the visual impact of your sliders by applying gradient or solid color ov
 
 = Responsive slider =
 
-Set different background images for desktop, tablet, and mobile screen sizes, allowing for optimal visual presentation across various devices.
+Set different background images for desktop, tablet, and mobile screen sizes.
 
 = Live Editor Preview =
 
@@ -52,7 +52,7 @@ Supporting both touch and mouse swipe gestures, providing a seamless user experi
 
 = Title or Dot Icon Navigation =
 
-Customize the navigation with title-based navigation or dot icons, allowing your users to easily navigate through your sliders.
+Customize the navigation with title-based navigation or dot icons.
 
 = Parallax Effect =
 
@@ -82,6 +82,11 @@ Choose from 20 transition animations to add dynamism and flair to your sliders.
 <a href="https://superblockslider.com/documentations/" target="_new">Documentations</a>
 
 == Changelog ==
+
+= 2.8.3.4 =
+
+* Change single slide delete button label to "x" icon in the editor for QOL improvement.
+* Modernized block registration: Migrated metadata to `block.json` and upgraded to API Version 3 for improved performance and full compatibility with the WordPress 7.0 iframed editor.
 
 = 2.8.3.3 =
 
