@@ -4,7 +4,7 @@ Donate link:        https://www.paypal.com/paypalme/wpslider
 Tags:               slider, image slider, content slider, slider block, block
 Requires at least:  6.3
 Tested up to:       7.0
-Stable tag:         2.8.3.4
+Stable tag:         2.8.3.5
 Requires PHP:       7.0.0
 License:            GPL-2.0-or-later
 License URI:        https://www.gnu.org/licenses/gpl-2.0.html
@@ -82,6 +82,15 @@ Choose from 20 transition animations to add dynamism and flair to your sliders.
 <a href="https://superblockslider.com/documentations/" target="_new">Documentations</a>
 
 == Changelog ==
+
+= 2.8.3.5 =
+
+* Refactor: Resolved React render cycle warnings in the block editor by moving synchronous attributes updates to `useEffect`.
+* Refactor: Replaced brittle DOM-scraping logic with a robust top-down data flow using `useSelect` for the Slider and Slide block orchestration.
+* Refactor: Modularized responsive background image configuration logic into a dedicated `ResponsiveBackgroundAdapter` component for cleaner maintainability.
+* Refactor: Thermo-nuclear structural rewrite of the frontend `superblockslider.ts`. Dismantled a massive 500-line closure function into a clean, object-oriented `SuperBlockSlider` class.
+* Refactor: Resolved performance scaling issues and potential memory leaks by implementing a `SuperBlockSliderManager` that binds `resize` and `scroll` listeners once globally instead of per-slider.
+* Refactor: Eliminated brittle "any" typed variables driving the slider state machine, replacing them with strongly-typed properties (`playing`, `paused`, `stopped`) and interfaces.
 
 = 2.8.3.4 =
 

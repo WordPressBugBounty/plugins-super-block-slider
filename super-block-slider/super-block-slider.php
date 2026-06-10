@@ -2,7 +2,7 @@
 /**
  * Plugin Name:     Super Block Slider
  * Description:     Lightweight image & content slider for block and classic editor.
- * Version:         2.8.3.4
+ * Version:         2.8.3.5
  * Author:          mikemmx
  * Plugin URI:      https://superblockslider.com/
  * Author URI:      https://wordpress.org/support/users/mikemmx/
@@ -18,7 +18,7 @@ if (!defined('ABSPATH')) {
 }
 
 // Define plugin constants
-define('SUPERBLOCKSLIDER_VERSION', '2.8.3.4');
+define('SUPERBLOCKSLIDER_VERSION', '2.8.3.5');
 define('SUPERBLOCKSLIDER_DIR', __DIR__);
 define('SUPERBLOCKSLIDER_URL', plugin_dir_url(__FILE__));
 
