@@ -17,26 +17,6 @@
 .superblockslider__slide {
 	min-width: 100px;
 	min-height: 100px;
-
-	.superblockslider__button--remove {
-		position: absolute;
-		z-index: 99;
-		top: 0;
-		right: 0;
-		border: 1px solid;
-		margin: 5px;
-		padding: 5px;
-		background-color: rgba(255, 255, 255, .25);
-		display: none;
-	}
-
-	&.is-selected,
-	&.is-hovered,
-	&:hover {
-		.superblockslider__button--remove {
-			display: flex;
-		}
-	}
 }
 
 .superblockslider__window {
@@ -136,11 +116,13 @@ button.components-button.has-icon.has-text.button-full-width {
 	}
 }
 
-.superblockslider__slide__bg>img {
+.superblockslider__slide__bg>img,
+.superblockslider__slide__bg>video {
 	min-height: 100%;
 }
 
-.superblockslider__slide__image {
+.superblockslider__slide__image,
+.superblockslider__slide__video {
 	display: none;
 }
 

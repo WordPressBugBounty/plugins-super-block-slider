@@ -1,34 +1,34 @@
-=== Super block slider - Image & content slider ===
+=== Super block slider - Image/video background & content slider ===
 Contributors:       Mikemmx
 Donate link:        https://www.paypal.com/paypalme/wpslider
 Tags:               slider, image slider, content slider, slider block, block
 Requires at least:  6.3
 Tested up to:       7.0
-Stable tag:         2.8.3.5
+Stable tag:         2.8.3.7
 Requires PHP:       7.0.0
 License:            GPL-2.0-or-later
 License URI:        https://www.gnu.org/licenses/gpl-2.0.html
 
-Lightweight image & content slider for block and classic editor.
+Lightweight image/video background & content slider for block and classic editor.
 
 == Description ==
 
 [youtube https://www.youtube.com/watch?v=6c2Rdi4o5MU]
 <a href="https://superblockslider.com/slider-showcase/" target="_new">Slider examples</a>
 
-A lightweight image & content slider plugin. Allows for full control over the content layout and design.
+A lightweight image/video background & content slider plugin. Allows for full control over the content layout and design.
 
 = Lightweight =
 
-Standalone 5KB JavaScript file, optimize for loading speed and performance.
+Standalone 9KB JavaScript file, optimize for loading speed and performance.
 
 = Content slider =
 
 Highly flexible and customizable content, giving you full control over the content layout and design by using any blocks in the content area.
 
-= Image slider =
+= Image & Video slider background =
 
-Customize each slide’s background image and visual presentation of your sliders.
+Set a custom image or video background for each slide.
 
 = Supports block & classic editor =
 
@@ -36,19 +36,19 @@ Works for block editor and classic editor(via shortcode. example: [superblocksli
 
 = Gradient / color overlay =
 
-Enhance the visual impact of your sliders by applying gradient or solid color overlays, creating an eye-catching backdrop for your content.
+Apply solid color or gradient overlays over your backgrounds.
 
 = Responsive slider =
 
-Set different background images for desktop, tablet, and mobile screen sizes.
+Set different image or video background for desktop, tablet, and mobile screen sizes.
 
 = Live Editor Preview =
 
-Preview your slider's appearance in real-time within the WordPress editor, making it easy to fine-tune and perfect the design before publishing.
+Preview your slider in the WordPress editor, making it easy to fine-tune the design before publishing.
 
 = Touch & mouse drag =
 
-Supporting both touch and mouse swipe gestures, providing a seamless user experience on touchscreen devices and desktops.
+Supports touch and mouse swipe navigation.
 
 = Title or Dot Icon Navigation =
 
@@ -56,15 +56,15 @@ Customize the navigation with title-based navigation or dot icons.
 
 = Parallax Effect =
 
-Add a visually appealing parallax effect to your slider, this effect creates a captivating scrolling experience by moving the background at a different speed than the foreground content.
+Add an interactive parallax scrolling effect to background images.
 
 = Adaptive slider height =
 
-The slider's height adjusts automatically based on the background size, ensuring that your slides are displayed properly.
+Automatically adjusts slider height based on the background size.
 
 = Transition Animations =
 
-Choose from 20 transition animations to add dynamism and flair to your sliders.
+Choose from 20 distinct slide transition animations.
 
 == Featured highlight ==
 
@@ -82,6 +82,25 @@ Choose from 20 transition animations to add dynamism and flair to your sliders.
 <a href="https://superblockslider.com/documentations/" target="_new">Documentations</a>
 
 == Changelog ==
+
+= 2.8.3.7 =
+
+* Fix: Inverted mouse drag direction for swiping.
+* Fix: Infinite loop DOM restructuring issues when using dot navigation.
+* Fix: Video autoplay behavior to rely on native autoPlay on initial load.
+* Fix: Overly sensitive touch swipe and vertical scroll interference on mobile.
+* Perf: Refactored autoplay loop to use setInterval instead of a continuous requestAnimationFrame loop.
+* Dev: Added Jest test suite for frontend TypeScript module.
+* Feature: Add background Video option
+* Feature: Add responsive video poster image option
+
+= 2.8.3.6 =
+
+* Feature: Add padding setting to 'superblockslider/slide' inner content
+* Feature: Moved "Delete Slide" button in the Inspector sidebar
+* Change single slide delete button label to "Delete"
+* Fix: Upgrade 'superblockslider/slide' block to API Version 3 for full iframe editor compatibility
+* Fix: Resolve SelectControl default size deprecation warning in the editor
 
 = 2.8.3.5 =
 

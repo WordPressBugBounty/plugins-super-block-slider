@@ -7,6 +7,7 @@ interface SliderSettings {
     hoverPause: boolean;
     transitionEffect: string;
     transitionDuration: string;
+    transitionDurationMs: number;
     animation: string;
     arrowNavigation: boolean;
     variableHeight: boolean;
@@ -20,15 +21,17 @@ interface SliderState {
     autoplayStatus: 'playing' | 'paused' | 'stopped';
     autoplayTime?: number;
     pressDownX: number | null;
+    pressDownY: number | null;
 }
 
-class SuperBlockSlider {
+export class SuperBlockSlider {
     private el: HTMLElement;
     private track: HTMLElement;
     private buttons: NodeListOf<HTMLElement>;
     private btnPrev: HTMLElement | null;
     private btnNext: HTMLElement | null;
     private parallaxSlides: NodeListOf<HTMLElement>;
+    private autoplayIntervalId: number | null = null;
 
     private settings: SliderSettings;
     private state: SliderState;
@@ -51,6 +54,7 @@ class SuperBlockSlider {
             isAnimating: false,
             autoplayStatus: this.settings.autoplay ? 'playing' : 'stopped',
             pressDownX: null,
+            pressDownY: null,
         };
 
         const slides = this.getSlides();
@@ -63,13 +67,16 @@ class SuperBlockSlider {
         const parseBool = (attr: string | null, def: boolean) => attr ? true : def;
         const parseInverseBool = (attr: string | null, def: boolean) => attr ? false : def;
 
+        const parseDurationToMs = (durationStr: string) => {
+            if (durationStr.includes('ms')) {
+                return parseInt(durationStr.replace('ms', ''));
+            }
+            return parseFloat(durationStr.replace('s', '')) * 1000;
+        };
+
         const autoplayIntervalAttr = el.getAttribute('data-autoplay-interval') || '1.5s';
-        let autoplayIntervalMs = 1500;
-        if (autoplayIntervalAttr.includes('ms')) {
-            autoplayIntervalMs = parseInt(autoplayIntervalAttr.replace('ms', ''));
-        } else {
-            autoplayIntervalMs = parseFloat(autoplayIntervalAttr.replace('s', '')) * 1000;
-        }
+        const autoplayIntervalMs = parseDurationToMs(autoplayIntervalAttr);
+        const transitionDuration = el.getAttribute('data-transition-duration') || '.6s';
 
         return {
             initialActiveSlide: parseInt(el.getAttribute('data-initial-active-slide') || '0'),
@@ -79,7 +86,8 @@ class SuperBlockSlider {
             slideNavigation: el.getAttribute('data-slide-navigation') || 'dots',
             hoverPause: parseInverseBool(el.getAttribute('data-hover-pause'), true),
             transitionEffect: el.getAttribute('data-transition-effect') || 'slide',
-            transitionDuration: el.getAttribute('data-transition-duration') || '.6s',
+            transitionDuration: transitionDuration,
+            transitionDurationMs: parseDurationToMs(transitionDuration),
             animation: el.getAttribute('data-animation') || 'cubic-bezier(0.46, 0.03, 0.52, 0.96)',
             arrowNavigation: parseInverseBool(el.getAttribute('data-arrow-navigation'), true),
             variableHeight: parseBool(el.getAttribute('data-variable-height'), false),
@@ -89,10 +97,20 @@ class SuperBlockSlider {
     private init() {
         // Initial setup
         this.applyTrackTransform(this.state.currentSlideIndex * this.offsetPercent);
+        
+        if (this.settings.transitionEffect === 'fade') {
+            const slides = this.getSlides();
+            slides.forEach(slide => {
+                slide.style.transition = `opacity ${this.settings.transitionDuration} ${this.settings.animation}`;
+            });
+        }
 
         // Bind Events
-        this.track.addEventListener('transitionstart', () => this.handleTransitionStart());
-        this.track.addEventListener('transitionend', () => this.handleTransitionEnd());
+        this.track.addEventListener('transitionend', (e) => {
+            if (e.target === this.track) {
+                this.handleTransitionEnd();
+            }
+        });
 
         if (this.btnPrev && this.btnNext) {
             this.btnPrev.addEventListener('click', () => this.prevSlide(true));
@@ -126,6 +144,20 @@ class SuperBlockSlider {
         // Parallax & Variable Height Initialization
         if (this.parallaxSlides.length > 0) this.initParallax();
         if (this.settings.variableHeight) this.updateSliderHeight();
+
+        // Initial video playback state relies on native autoPlay for active slide
+        this.pauseInactiveVideos();
+
+        this.startAutoplayTimer();
+    }
+
+    private startAutoplayTimer() {
+        if (!this.settings.autoplay) return;
+        this.autoplayIntervalId = window.setInterval(() => {
+            if (this.state.autoplayStatus === 'playing') {
+                this.nextSlide(false);
+            }
+        }, this.settings.autoplayIntervalMs);
     }
 
     private getSlides(): HTMLElement[] {
@@ -175,23 +207,6 @@ class SuperBlockSlider {
         });
     }
 
-    public onFrame(timestamp: number) {
-        if (this.state.autoplayStatus !== 'playing') {
-            this.state.autoplayTime = undefined;
-            return;
-        }
-
-        if (this.state.autoplayTime === undefined) {
-            this.state.autoplayTime = timestamp;
-        }
-
-        const elapsed = timestamp - this.state.autoplayTime;
-        if (elapsed >= this.settings.autoplayIntervalMs) {
-            this.state.autoplayTime = timestamp;
-            this.nextSlide(false);
-        }
-    }
-
     private prevSlide(userTriggered: boolean = false) {
         this.removeAnimatingClasses();
         this.state.previousSlideId = this.state.currentSlideId;
@@ -234,14 +249,14 @@ class SuperBlockSlider {
 
     private restructureDOMForInfiniteLoop(targetId: number, slides: HTMLElement[]) {
         // If moving backwards to the end
-        if (this.state.currentSlideIndex === 0 && slides.length > 2) {
+        if (this.state.currentSlideId === 0 && targetId === slides.length - 1 && slides.length > 2) {
             this.removeTrackTransition();
             this.track.prepend(slides[slides.length - 1]);
             this.state.currentSlideIndex = 1;
             this.applyTrackTransform(this.state.currentSlideIndex * this.offsetPercent);
         }
         // If moving forwards to the start
-        else if (this.state.currentSlideIndex === slides.length - 1) {
+        else if (this.state.currentSlideId === slides.length - 1 && targetId === 0 && slides.length > 2) {
             this.removeTrackTransition();
             this.state.currentSlideIndex = slides.length - 2;
             this.applyTrackTransform(this.state.currentSlideIndex * this.offsetPercent);
@@ -250,16 +265,20 @@ class SuperBlockSlider {
     }
 
     private executeAnimation(targetId: number, targetDOMIndex: number) {
-        if (this.settings.transitionEffect === 'slide') {
-            this.applyTrackTransition(this.settings.transitionDuration, this.settings.animation);
-            this.applyTrackTransform(targetDOMIndex * this.offsetPercent);
-        }
-
         this.state.currentSlideIndex = targetDOMIndex;
         this.state.currentSlideId = targetId;
 
+        this.handleTransitionStart();
+
+        if (this.settings.transitionEffect === 'slide') {
+            this.applyTrackTransform(targetDOMIndex * this.offsetPercent);
+        }
+
         if (this.settings.transitionEffect === 'fade') {
-            this.handleTransitionEnd(); // Fade relies entirely on CSS classes updated in transitionEnd
+            this.swapActiveClasses();
+            setTimeout(() => {
+                this.handleTransitionEnd();
+            }, this.settings.transitionDurationMs);
         }
     }
 
@@ -275,9 +294,19 @@ class SuperBlockSlider {
 
         this.getSlideById(this.state.currentSlideId)?.classList.add('superblockslider__slide--animating-in');
         this.getSlideById(this.state.previousSlideId)?.classList.add('superblockslider__slide--animating-out');
+
+        // Play incoming video immediately as it begins transitioning in
+        const incomingSlide = this.getSlideById(this.state.currentSlideId);
+        if (incomingSlide) {
+            const incomingVideos = incomingSlide.querySelectorAll('video[data-autoplay="true"]') as NodeListOf<HTMLVideoElement>;
+            incomingVideos.forEach((video) => {
+                video.currentTime = 0; // Restart from beginning
+                video.play().catch(e => console.warn('Autoplay prevented by browser', e));
+            });
+        }
     }
 
-    private handleTransitionEnd() {
+    private swapActiveClasses() {
         const activeClass = 'superblockslider__slide--active';
         this.el.querySelector(`.${activeClass}`)?.classList.remove(activeClass);
         this.getSlideById(this.state.currentSlideId)?.classList.add(activeClass);
@@ -289,9 +318,30 @@ class SuperBlockSlider {
                 this.buttons[this.state.currentSlideId].classList.add(btnClass);
             }
         }
+    }
+
+    private handleTransitionEnd() {
+        if (this.settings.transitionEffect === 'slide') {
+            this.swapActiveClasses();
+        }
 
         this.state.isAnimating = false;
         if (this.state.autoplayStatus === 'paused') this.state.autoplayStatus = 'playing';
+
+        this.pauseInactiveVideos();
+    }
+
+    private pauseInactiveVideos() {
+        const allVideos = this.el.querySelectorAll('video');
+        allVideos.forEach(video => {
+            // If this video is inside the currently active slide, don't pause it!
+            const slideParent = video.closest('.superblockslider__slide');
+            if (slideParent && slideParent.getAttribute('data-slide-index') === this.state.currentSlideId.toString()) {
+                return;
+            }
+            video.pause();
+            video.currentTime = 0;
+        });
     }
 
     private removeAnimatingClasses() {
@@ -352,35 +402,50 @@ class SuperBlockSlider {
 
     private bindDragEvents() {
         const mouseThreshold = 150;
-        const touchThreshold = 6;
+        const touchThreshold = 30;
 
         this.el.addEventListener('mousedown', (e) => this.state.pressDownX = e.pageX);
         this.el.addEventListener('mouseup', (e) => {
             if (this.state.pressDownX === null) return;
             const diff = e.pageX - this.state.pressDownX;
-            if (diff > mouseThreshold) this.nextSlide(true);
-            else if (diff < -mouseThreshold) this.prevSlide(true);
+            if (diff > mouseThreshold) this.prevSlide(true);
+            else if (diff < -mouseThreshold) this.nextSlide(true);
             this.state.pressDownX = null;
         });
 
-        this.el.addEventListener('touchstart', (e) => this.state.pressDownX = e.touches[0].clientX, { passive: true });
+        this.el.addEventListener('touchstart', (e) => {
+            this.state.pressDownX = e.touches[0].clientX;
+            this.state.pressDownY = e.touches[0].clientY;
+        }, { passive: true });
+        
         this.el.addEventListener('touchmove', (e) => {
-            if (this.state.pressDownX === null) return;
-            const diff = this.state.pressDownX - e.touches[0].clientX;
+            if (this.state.pressDownX === null || this.state.pressDownY === null) return;
+            
+            const diffX = this.state.pressDownX - e.touches[0].clientX;
+            const diffY = this.state.pressDownY - e.touches[0].clientY;
 
-            if (diff > touchThreshold) {
-                this.nextSlide(true);
-                this.state.autoplayStatus = 'stopped';
-            } else if (diff < -touchThreshold) {
-                this.prevSlide(true);
-                this.state.autoplayStatus = 'stopped';
+            if (Math.abs(diffX) > Math.abs(diffY)) {
+                if (diffX > touchThreshold) {
+                    this.nextSlide(true);
+                    this.state.autoplayStatus = 'stopped';
+                    this.state.pressDownX = null;
+                    this.state.pressDownY = null;
+                } else if (diffX < -touchThreshold) {
+                    this.prevSlide(true);
+                    this.state.autoplayStatus = 'stopped';
+                    this.state.pressDownX = null;
+                    this.state.pressDownY = null;
+                }
+            } else if (Math.abs(diffY) > touchThreshold) {
+                // If the user is scrolling vertically, kill the swipe state so it doesn't trigger later
+                this.state.pressDownX = null;
+                this.state.pressDownY = null;
             }
-            this.state.pressDownX = null;
         }, { passive: true });
     }
 }
 
-class SuperBlockSliderManager {
+export class SuperBlockSliderManager {
     static sliders: SuperBlockSlider[] = [];
 
     static init(selector: string) {
@@ -395,19 +460,17 @@ class SuperBlockSliderManager {
         window.addEventListener('scroll', () => {
             this.sliders.forEach(s => s.onScroll());
         });
-
-        const loop = (timestamp: number) => {
-            this.sliders.forEach(s => s.onFrame(timestamp));
-            window.requestAnimationFrame(loop);
-        };
-        window.requestAnimationFrame(loop);
     }
 }
 
 (() => {
-    document.onreadystatechange = function () {
-        if (document.readyState === 'complete') {
-            SuperBlockSliderManager.init('.superblockslider');
-        }
+    const initSlider = () => {
+        SuperBlockSliderManager.init('.superblockslider');
+    };
+
+    if (document.readyState === 'complete' || document.readyState === 'interactive') {
+        initSlider();
+    } else {
+        document.addEventListener('DOMContentLoaded', initSlider);
     }
 })();
