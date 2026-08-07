@@ -97,7 +97,7 @@ export class SuperBlockSlider {
     private init() {
         // Initial setup
         this.applyTrackTransform(this.state.currentSlideIndex * this.offsetPercent);
-        
+
         if (this.settings.transitionEffect === 'fade') {
             const slides = this.getSlides();
             slides.forEach(slide => {
@@ -230,6 +230,8 @@ export class SuperBlockSlider {
         if (stopAutoplay) this.state.autoplayStatus = 'stopped';
         if (this.state.currentSlideId === targetId) return;
 
+        this.state.isAnimating = true;
+
         let targetDOMIndex = targetId;
         const slides = this.getSlides();
 
@@ -323,6 +325,30 @@ export class SuperBlockSlider {
     private handleTransitionEnd() {
         if (this.settings.transitionEffect === 'slide') {
             this.swapActiveClasses();
+
+            if (this.settings.loopSlide) {
+                const slides = Array.from(this.track.children) as HTMLElement[];
+                const sortedSlides = slides.slice().sort((a, b) => {
+                    return parseInt(a.getAttribute('data-slide-index') || '0') - parseInt(b.getAttribute('data-slide-index') || '0');
+                });
+
+                let orderChanged = false;
+                for (let i = 0; i < slides.length; i++) {
+                    if (slides[i] !== sortedSlides[i]) {
+                        orderChanged = true;
+                        break;
+                    }
+                }
+
+                if (orderChanged) {
+                    this.removeTrackTransition();
+                    sortedSlides.forEach(slide => this.track.appendChild(slide));
+                    this.state.currentSlideIndex = this.state.currentSlideId;
+                    this.applyTrackTransform(this.state.currentSlideIndex * this.offsetPercent);
+                    // Force reflow
+                    void this.track.offsetWidth;
+                }
+            }
         }
 
         this.state.isAnimating = false;
@@ -417,10 +443,10 @@ export class SuperBlockSlider {
             this.state.pressDownX = e.touches[0].clientX;
             this.state.pressDownY = e.touches[0].clientY;
         }, { passive: true });
-        
+
         this.el.addEventListener('touchmove', (e) => {
             if (this.state.pressDownX === null || this.state.pressDownY === null) return;
-            
+
             const diffX = this.state.pressDownX - e.touches[0].clientX;
             const diffY = this.state.pressDownY - e.touches[0].clientY;
 

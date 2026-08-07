@@ -4,7 +4,7 @@ Donate link:        https://www.paypal.com/paypalme/wpslider
 Tags:               slider, image slider, content slider, slider block, block
 Requires at least:  6.3
 Tested up to:       7.0
-Stable tag:         2.8.3.7
+Stable tag:         2.8.3.8
 Requires PHP:       7.0.0
 License:            GPL-2.0-or-later
 License URI:        https://www.gnu.org/licenses/gpl-2.0.html
@@ -20,13 +20,13 @@ A lightweight image/video background & content slider plugin. Allows for full co
 
 = Lightweight =
 
-Standalone 9KB JavaScript file, optimize for loading speed and performance.
+Standalone 10KB JavaScript file, optimize for loading speed and performance.
 
 = Content slider =
 
 Highly flexible and customizable content, giving you full control over the content layout and design by using any blocks in the content area.
 
-= Image & Video slider background =
+= Image & Video background slider =
 
 Set a custom image or video background for each slide.
 
@@ -82,6 +82,13 @@ Choose from 20 distinct slide transition animations.
 <a href="https://superblockslider.com/documentations/" target="_new">Documentations</a>
 
 == Changelog ==
+
+= 2.8.3.8 =
+
+* Fix: Slider freeze race condition when rapidly clicking navigation buttons during infinite loops.
+* Fix: Infinite loop DOM order becoming out of sync on subsequent loops.
+* Fix: Parallax effect automatically disabled for video backgrounds.
+* Fix: Video playback synced to start only after slide transition completes.
 
 = 2.8.3.7 =
 
